@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["vkill"]
   s.email       = ["vkill.net@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = "A generate model attributes I18n locale files plugin for Rails3."
+  s.description = "A generate model attributes I18n locale files plugin for Rails3."
 
   s.rubyforge_project = "i18n_attributes"
 
@@ -18,7 +18,10 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  # s.add_runtime_dependency "rest-client"
+  s.add_development_dependency 'bundler'
+  s.add_development_dependency "rake"
+  s.add_development_dependency "rspec"
+  s.add_development_dependency "guard-rspec"
+  s.add_dependency "rails", "~> 3.0"
 end
+
