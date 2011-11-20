@@ -15,7 +15,7 @@ I18nAttributes is a generate model attributes I18n locale files plugin for Rails
 
 In your app's `Gemfile`, add:
 
-    gem "i18n_attributes", "~> 0.1.0"
+    gem "i18n_attributes", "~> 0.1.1"
 
 Then run:
 

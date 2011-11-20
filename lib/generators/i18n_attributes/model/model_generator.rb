@@ -6,6 +6,8 @@ class I18nAttributes::ModelGenerator < Rails::Generators::NamedBase
 
   include I18nAttributes::GeneratorHelpers
 
+  SUPPORTED_ORMS = %w(active_record active_model mongoid)
+
   def create_model_i18n_file
 
     orm = options.orm.to_s
@@ -21,7 +23,7 @@ class I18nAttributes::ModelGenerator < Rails::Generators::NamedBase
 
   private
     def attributes_hash
-      Hash[ attributes.map {|attribute| [attribute.name, attribute.human_name] } ]
+      Hash[ attributes.map {|attribute| [attribute.name, attribute.type] } ]
     end
 end
 
