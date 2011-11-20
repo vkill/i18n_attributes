@@ -1,3 +1,7 @@
+== 0.1.1.1
+
+* fix dependency error
+
 == 0.1.1
 
 * use vkill_gems_method gem
