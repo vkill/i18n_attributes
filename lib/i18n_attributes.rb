@@ -1,5 +1,7 @@
 require "i18n_attributes/version"
 
+require "vkill_gems_methods"
+
 require "i18n_attributes/configuration"
 require "rails"
 require "i18n_attributes/railtie"
