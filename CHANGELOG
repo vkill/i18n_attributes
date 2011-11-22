@@ -1,6 +1,11 @@
+== 0.1.2
+
+* Gemfile use :group => [:development]
+
 == 0.1.1.1
 
 * fix dependency error
+
 
 == 0.1.1
 
