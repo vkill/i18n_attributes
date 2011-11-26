@@ -19,7 +19,8 @@ class I18nAttributes::ReviseModelGenerator < Rails::Generators::Base
     ::ActiveRecord::Base.models do |model, columns|
       ::I18nAttributes::Configuration.locales.each do |locale|
         create_file "config/locales/model_#{ locale }/#{ model.name.underscore }.yml",
-                generate_yaml_file_data(locale, model.model_name.underscore, model.model_name, columns, orm)
+                generate_yaml_file_data(locale, model.model_name.underscore, model.model_name, columns,
+                                           orm, model.i18n_scope)
       end
     end
 

@@ -1,3 +1,7 @@
+== 0.1.3
+
+* fix i18n file "en.active_record.model" error
+
 == 0.1.2
 
 * Gemfile use :group => [:development]
