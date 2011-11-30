@@ -12,7 +12,7 @@ module I18nAttributes
                 singular_name => human_name.to_s
               },
               "attributes" => {
-                singular_name => columns_hash(attributes).merge(enums_hash(attributes))
+                singular_name => columns_hash(attributes)
               }
             }
           }
@@ -23,14 +23,6 @@ module I18nAttributes
     private
       def columns_hash(attributes)
         Hash[ attributes.keys.map {|k| [k.to_s, k.to_s.humanize]} ]
-      end
-
-      def enums_hash(attributes)
-        enums = {}
-        I18nAttributes::Configuration.enums_attributes.each do |k,v|
-          attributes.keys.index(k) ? enums.merge!(k => v) : next
-        end
-        enums.empty? ? {} : { "enums" => enums }
       end
 
   end

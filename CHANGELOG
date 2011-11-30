@@ -1,3 +1,7 @@
+== 0.1.4
+
+* drop enums support
+
 == 0.1.3
 
 * fix i18n file "en.active_record.model" error
