@@ -4,6 +4,8 @@ I18nAttributes is a generate model attributes I18n locale files plugin for Rails
 
 * https://github.com/vkill/i18n_attributes
 
+it support active_model active_record and mongoid.
+
 ##Supported versions
 
 * Ruby 1.8.7, 1.9.2, 1.9.3
