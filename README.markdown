@@ -73,7 +73,7 @@ First, edit `config/initializers/i18n_attributes.rb` file, like this
       end
     end
 
-Then, install `youdao_fanyi`, see https://github.com/vkill/youdao_fanyi. you also use `to _lang` and more.
+Then, install `youdao_fanyi`, see https://github.com/vkill/youdao_fanyi. you also use `to_lang` and other.
 
 Last, run `rails g i18n_attributes:revise_model`, results like this
 
@@ -98,6 +98,20 @@ Last, run `rails g i18n_attributes:revise_model`, results like this
               username: 用户名
               created_at: created_at
               updated_at: updated_at
+
+
+##Notes
+
+If your `config/locales/**/*.yml` have following code
+
+    name: "\xE5\x90\x8D\xE5\xAD\x97"
+
+please setting `YAML::ENGINE.yamler= 'psyck'`, example
+
+    # config/boot.rb
+    require 'yaml'
+    YAML::ENGINE.yamler= 'psyck'
+
 
 
 ##Copyright
