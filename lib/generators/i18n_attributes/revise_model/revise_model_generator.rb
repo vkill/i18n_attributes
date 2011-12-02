@@ -8,7 +8,7 @@ class I18nAttributes::ReviseModelGenerator < Rails::Generators::Base
 
   include I18nAttributes::GeneratorHelpers
 
-  SUPPORTED_ORMS = %w(active_record active_model mongoid)
+  SUPPORTED_ORMS = %w(active_model active_record mongoid)
 
   def create_model_i18n_file
 
@@ -17,7 +17,13 @@ class I18nAttributes::ReviseModelGenerator < Rails::Generators::Base
     ::ActiveRecord::Base.models do |model, columns|
       ::I18nAttributes::Configuration.locales.each do |locale|
         create_file "config/locales/model_#{ locale }/#{ model.name.underscore }.yml",
-                generate_yaml_file_data(locale, model.model_name.underscore, model.model_name, columns, model.i18n_scope)
+                generate_yaml_file_data(
+                  :locale => locale,
+                  :singular_name => model.model_name.underscore,
+                  :human_name => model.model_name,
+                  :attributes => columns,
+                  :model_i18n_scope => model.i18n_scope
+                )
       end
     end
 

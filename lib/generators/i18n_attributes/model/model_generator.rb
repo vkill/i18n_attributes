@@ -6,7 +6,7 @@ class I18nAttributes::ModelGenerator < Rails::Generators::NamedBase
 
   include I18nAttributes::GeneratorHelpers
 
-  SUPPORTED_ORMS = %w(active_record active_model mongoid)
+  SUPPORTED_ORMS = %w(active_model active_record mongoid)
 
   def create_model_i18n_file
 
@@ -14,7 +14,13 @@ class I18nAttributes::ModelGenerator < Rails::Generators::NamedBase
 
     I18nAttributes::Configuration.locales.each do |locale|
       create_file "config/locales/model_#{ locale }/#{ file_name }.yml",
-              generate_yaml_file_data(locale, singular_name, human_name, attributes_hash(), model_i18n_scope())
+              generate_yaml_file_data(
+                :locale => locale,
+                :singular_name => singular_name,
+                :human_name => human_name,
+                :attributes => attributes_hash(),
+                :model_i18n_scope => model_i18n_scope()
+              )
     end
 
   end
