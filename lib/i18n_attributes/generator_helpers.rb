@@ -3,7 +3,7 @@ require "yaml"
 module I18nAttributes
   module GeneratorHelpers
 
-    def generate_yaml_file_data(locale, singular_name, human_name, attributes, model_i18n_scope="activerecord")
+    def generate_yaml_file_data(locale, singular_name, human_name, attributes, model_i18n_scope)
       YAML.dump_stream(
         {
           locale.to_s => {

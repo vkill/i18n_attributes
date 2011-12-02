@@ -1,3 +1,7 @@
+== 0.1.5
+
+* revise_model support mongoid orm
+
 == 0.1.4
 
 * drop enums support
