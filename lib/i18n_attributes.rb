@@ -1,5 +1,6 @@
 require "i18n_attributes/version"
 
+require "yaml"
 require "vkill_gems_methods"
 
 require "i18n_attributes/configuration"
