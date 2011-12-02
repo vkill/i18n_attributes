@@ -22,7 +22,18 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec"
   s.add_development_dependency "guard-rspec"
+  s.add_development_dependency "pry"
+  s.add_development_dependency "rspec-rails"
+
+  #translate attribute use
+  s.add_development_dependency "youdao_fanyi"
+
+  #use in spec/rails3_0_app
+  s.add_development_dependency "rails", "~> 3.0"
+  s.add_development_dependency "sqlite3-ruby"
+
   s.add_dependency "rails", "~> 3.0"
+  s.add_dependency "activesupport", "~> 3.0"
   s.add_dependency "vkill_gems_methods", "~> 0.1.0"
 end
 
