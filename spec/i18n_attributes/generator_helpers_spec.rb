@@ -3,7 +3,7 @@ require "spec_helper"
 
 describe I18nAttributes::GeneratorHelpers::YamlFileData do
 
-  def reset_subject(*options)
+  def reset_subject(*options, &block)
     options = options.extract_options!
     locale = options.delete(:locale) || :en
     singular_name = options.delete(:singular_name) || :user
@@ -12,7 +12,7 @@ describe I18nAttributes::GeneratorHelpers::YamlFileData do
     model_i18n_scope = options.delete(:model_i18n_scope) || :activerecord
     I18nAttributes::GeneratorHelpers::YamlFileData.new(
       :locale => locale.to_s, :singular_name => singular_name.to_s, :human_name => human_name.to_s,
-      :attributes => attributes.to_hash, :model_i18n_scope => model_i18n_scope.to_s )
+      :attributes => attributes.to_hash, :model_i18n_scope => model_i18n_scope.to_s , &block)
   end
 
   it "instance var should set" do
@@ -71,6 +71,15 @@ describe I18nAttributes::GeneratorHelpers::YamlFileData do
       data = YAML.load_stream(subject.yaml_file_data).first
       data['en']['activerecord']['attributes']['user']['username'].should == "Username"
     end
+  end
+
+  it "test block" do
+    I18nAttributes::Configuration.translator = {:"zh-CN" => Proc.new{|str| str.to_s.humanize}}
+    block_results = []
+    reset_subject(:locale => :"zh-CN", :attributes => {"username"=>:string},
+                  :human_name => :User) {|word| block_results << word}
+    block_results.should include('username')
+    block_results.should include('User')
   end
 end
 

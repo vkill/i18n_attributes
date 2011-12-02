@@ -1,0 +1,9 @@
+# key,keyfrom please see http://fanyi.youdao.com/fanyiapi?path=data-mode
+
+youdao_fanyi_api_keys:
+  - keyfrom: blog-vkill-net
+    key: 2022446265
+  # if your only use one key&keyfrom, please destroy the following code.
+#  - keyfrom: keyfrom2
+#    key: key2
+

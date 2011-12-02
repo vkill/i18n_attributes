@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
   #use in spec/rails3_0_app
   s.add_development_dependency "rails", "~> 3.0"
   s.add_development_dependency "sqlite3-ruby"
+  s.add_development_dependency "youdao_fanyi"
 
   s.add_dependency "rails", "~> 3.0"
   s.add_dependency "activesupport", "~> 3.0"

@@ -34,6 +34,8 @@ Run:
 
 ##Usage Example
 
+###Basic Usage
+
 When your generate post model, then hook invoke, create `config/locales/model_zh-CN/post.yml` file
 
     > rails g model post title:string
@@ -52,6 +54,48 @@ If your models has been created, you want generate model attributes i18n locale 
     > rails g i18n_attributes:revise_model
         create  config/locales/model_en/post.yml
         create  config/locales/model_zh-CN/post.yml
+
+###Translate attribute
+
+If you want translate attribute or model name
+
+First, edit `config/initializers/i18n_attributes.rb` file, like this
+
+    if Rails.env.development?
+      I18nAttributes.configure do |config|
+        config.locales = [:en, :"zh-CN"]
+        config.translator = {
+          ##if use this, you mast install youdao_fanyi, see https://github.com/vkill/youdao_fanyi
+          :"zh-CN" => Proc.new{|str| YoudaoFanyi.t(str).first}
+        }
+      end
+    end
+
+Then, install `youdao_fanyi`, see https://github.com/vkill/youdao_fanyi. you also use `to _lang` and more.
+
+Last, run `rails g i18n_attributes:revise_model`, results like this
+
+    > rails g i18n_attributes:revise_model
+      create  config/locales/model_en/user.yml
+      INFO  translated attribute/model_name id
+      INFO  translated attribute/model_name username
+      INFO  translated attribute/model_name created_at
+      INFO  translated attribute/model_name updated_at
+      INFO  translated attribute/model_name User
+      create  config/locales/model_zh-CN/user.yml
+
+    > cat config/locales/model_zh-CN/user.yml
+      ---
+      zh-CN:
+        activerecord:
+          models:
+            user: 用户
+          attributes:
+            user:
+              id: id
+              username: 用户名
+              created_at: created_at
+              updated_at: updated_at
 
 
 ##Copyright

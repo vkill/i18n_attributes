@@ -4,7 +4,9 @@ class I18nAttributes::ModelGenerator < Rails::Generators::NamedBase
   class_option :orm, :required => true
   argument :attributes, :type => :array, :default => [], :banner => "field:type field:type"
 
-  include I18nAttributes::GeneratorHelpers
+  include ::VkillGemsMethods::Rails::Generators::Base
+
+  include ::I18nAttributes::GeneratorHelpers
 
   SUPPORTED_ORMS = %w(active_model active_record mongoid)
 
@@ -20,7 +22,7 @@ class I18nAttributes::ModelGenerator < Rails::Generators::NamedBase
                 :human_name => human_name,
                 :attributes => attributes_hash(),
                 :model_i18n_scope => model_i18n_scope()
-              ) {|word| say_info "translated #{word}"}
+              ){|word| say_info "translated attribute/model_name #{word}"}.yaml_file_data
     end
 
   end

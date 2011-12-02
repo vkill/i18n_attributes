@@ -6,7 +6,7 @@ class I18nAttributes::ReviseModelGenerator < Rails::Generators::Base
   include ::VkillGemsMethods::Rails::Generators::Base
   ::ActiveRecord::Base.send :include, ::VkillGemsMethods::ActiveRecord::Base
 
-  include I18nAttributes::GeneratorHelpers
+  include ::I18nAttributes::GeneratorHelpers
 
   SUPPORTED_ORMS = %w(active_model active_record mongoid)
 
@@ -23,7 +23,7 @@ class I18nAttributes::ReviseModelGenerator < Rails::Generators::Base
                   :human_name => model.model_name,
                   :attributes => columns,
                   :model_i18n_scope => model.i18n_scope
-                ) {|word| say_info "translated #{word}"}
+                ){|word| say_info "translated attribute/model_name #{word}"}.yaml_file_data
       end
     end
 

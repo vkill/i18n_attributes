@@ -1,0 +1,11 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      user: 用户
+    attributes:
+      user:
+        id: id
+        username: 用户名
+        created_at: created_at
+        updated_at: updated_at
