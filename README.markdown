@@ -96,8 +96,8 @@ Last, run `rails g i18n_attributes:revise_model`, results like this
             user:
               id: id
               username: 用户名
-              created_at: created_at
-              updated_at: updated_at
+              created_at: 创建在
+              updated_at: 及时更新,
 
 
 ##Notes
