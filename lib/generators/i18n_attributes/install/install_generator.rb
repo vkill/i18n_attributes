@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 class I18nAttributes::InstallGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
 

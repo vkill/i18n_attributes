@@ -1,3 +1,4 @@
+#encoding: utf-8
 =begin
   I18nAttributes.configure do |config|
     # more see https://github.com/svenfuchs/rails-i18n
