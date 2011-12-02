@@ -9,5 +9,4 @@ RSpec.configure do |config|
 end
 
 require "i18n_attributes"
-require "youdao_fanyi"
 

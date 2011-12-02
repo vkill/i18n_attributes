@@ -2,7 +2,7 @@ module I18nAttributes
   module GeneratorHelpers
 
     def generate_yaml_file_data(*options, &block)
-      YamlFileData.new(options, &block)
+      YamlFileData.new(*options, &block)
     end
 
     class YamlFileData
@@ -13,12 +13,17 @@ module I18nAttributes
       def initialize(*options, &block)
         options = options.extract_options!
         return self if test = options.delete(:test) || false
+        locale = options.delete(:locale) || raise("locale is required.")
+        singular_name = options.delete(:singular_name) || raise("singular_name is required.")
+        human_name = options.delete(:human_name) || raise("human_name is required.")
+        attributes = options.delete(:attributes) || raise("attributes is required.")
+        model_i18n_scope = options.delete(:model_i18n_scope) || raise("model_i18n_scope is required.")
+        @locale = locale.to_s
+        @singular_name = singular_name.to_s
+        @human_name = human_name.to_s
+        @attributes = attributes.to_hash
+        @model_i18n_scope = model_i18n_scope.to_s
 
-        @locale = options.delete(:locale).to_s || raise "locale is required."
-        @singular_name = options.delete(:singular_name).to_s || raise "singular_name is required."
-        @human_name = options.delete(:human_name).to_s || raise "human_name is required."
-        @attributes = options.delete(:attributes).to_hash || raise "attributes is required."
-        @model_i18n_scope = options.delete(:model_i18n_scope).to_s || raise "model_i18n_scope is required."
 
         set_locale_translator()
         set_columns_hash()
