@@ -102,15 +102,15 @@ Last, run `rails g i18n_attributes:revise_model`, results like this
 
 ##Notes
 
-If your `config/locales/**/*.yml` have following code
+If your `config/locales/**/*.yml` have following code, because `YAML::ENGINE.yamler= 'syck'`
 
     name: "\xE5\x90\x8D\xE5\xAD\x97"
 
-please setting `YAML::ENGINE.yamler= 'psyck'`, example
+solve it, please setting `YAML::ENGINE.yamler= 'psych'`, example
 
     # config/boot.rb
     require 'yaml'
-    YAML::ENGINE.yamler= 'psyck'
+    YAML::ENGINE.yamler= 'psych'
 
 
 
