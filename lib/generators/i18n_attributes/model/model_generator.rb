@@ -10,13 +10,11 @@ class I18nAttributes::ModelGenerator < Rails::Generators::NamedBase
 
   def create_model_i18n_file
 
-    orm = options.orm.to_s
-
-    say_error "#{orm} [not found]" unless SUPPORTED_ORMS.include? orm
+    say_error "#{orm} [not found]" unless SUPPORTED_ORMS.include? options.orm.to_s
 
     I18nAttributes::Configuration.locales.each do |locale|
       create_file "config/locales/model_#{ locale }/#{ file_name }.yml",
-                  generate_yaml_file_data(locale, singular_name, human_name, attributes_hash, orm)
+              generate_yaml_file_data(locale, singular_name, human_name, attributes_hash(), model_i18n_scope())
     end
 
   end
@@ -24,6 +22,17 @@ class I18nAttributes::ModelGenerator < Rails::Generators::NamedBase
   private
     def attributes_hash
       Hash[ attributes.map {|attribute| [attribute.name, attribute.type] } ]
+    end
+
+    def model_i18n_scope
+      case options.orm.to_s
+      when "active_model"
+        :activemodel
+      when "active_record"
+        :activerecord
+      when "mongoid"
+        :mongoid
+      end
     end
 end
 
