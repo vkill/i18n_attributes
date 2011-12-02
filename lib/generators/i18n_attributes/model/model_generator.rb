@@ -20,7 +20,7 @@ class I18nAttributes::ModelGenerator < Rails::Generators::NamedBase
                 :human_name => human_name,
                 :attributes => attributes_hash(),
                 :model_i18n_scope => model_i18n_scope()
-              )
+              ) {|word| say_info "translated #{word}"}
     end
 
   end

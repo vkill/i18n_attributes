@@ -25,20 +25,20 @@ module I18nAttributes
         @model_i18n_scope = model_i18n_scope.to_s
 
 
-        set_locale_translator()
-        set_columns_hash()
-        generate()
+        set_locale_translator(&block)
+        set_columns_hash(&block)
+        generate(&block)
         @yaml_file_data
       end
 
-      def generate
+      def generate(&block)
         @yaml_file_data =
           YAML.dump_stream(
             {
               locale => {
                 model_i18n_scope => {
                   "models" => {
-                    singular_name => human_name
+                    singular_name => @locale_translator ? translate(human_name, &block) : human_name
                   },
                   "attributes" => {
                     singular_name => @columns_hash
@@ -54,18 +54,13 @@ module I18nAttributes
           Hash[ @attributes.keys.map {|k|
                   [
                     k.to_s,
-                    if @locale_translator
-                      yield k.to_s if block
-                      @locale_translator.call(k.to_s)
-                    else
-                      k.to_s.humanize
-                    end
+                    @locale_translator ? translate(k, &block) : k.to_s.humanize
                   ]
                 }
               ]
       end
 
-      def set_locale_translator
+      def set_locale_translator(&block)
         translator = I18nAttributes::Configuration.translator
         locale_translator = translator[@locale.to_sym] || translator[@locale.to_sym]
         @locale_translator =
@@ -74,6 +69,11 @@ module I18nAttributes
           else
              nil
           end
+      end
+
+      def translate(word, &block)
+        yield word.to_s if block
+        @locale_translator.call(word.to_s)
       end
     end
 

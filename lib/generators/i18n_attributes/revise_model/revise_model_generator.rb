@@ -23,7 +23,7 @@ class I18nAttributes::ReviseModelGenerator < Rails::Generators::Base
                   :human_name => model.model_name,
                   :attributes => columns,
                   :model_i18n_scope => model.i18n_scope
-                )
+                ) {|word| say_info "translated #{word}"}
       end
     end
 
