@@ -2,16 +2,7 @@ class I18nAttributes::InstallGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
 
   def create_initializer_file
-    initializer 'i18n_attributes.rb' do
-      %Q/
-if Rails.env.development?
-  I18nAttributes.configure do |config|
-    #more > I18n.available_locales
-    config.locales = [:en, :"zh-CN"]
-  end
-end
-/
-    end
+    template "i18n_attributes.rb", 'config/initializers/i18n_attributes.rb'
   end
 
   def modify_application_config
